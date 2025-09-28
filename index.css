@@ -1,0 +1,48 @@
+.container{
+    background: #000;
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+}
+.mainContainer{
+    height:100%;
+}
+
+.subContainer{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height:100%;
+  
+}
+
+html, body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+}
+
+.div-1{
+    background-color: beige;
+
+
+}
+.div-2{
+    background-color: aqua;
+    height: 100%;
+   
+}
+.div-3{
+    background-color: blueviolet;
+    align-self: flex-end;
+    height:100%;
+    
+
+}
+.div-4{
+    background-color: blue;
+}
