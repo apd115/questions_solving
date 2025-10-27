@@ -240,7 +240,141 @@ called();
 called();
 
 
+//Currying
+
+//Ques - sum(2)(6)(1)
+
+function sum(a){
+   return function(b){
+       return function(c){
+        // console.log(a+b+c) ;
+       }
+   }
+}
+
+sum(2)(6)(1);
+
+//Ques - 
+//evaluate("sum")(4)(2) => 6
+//evaluate("multiply")(4)(2) => 8
+//evaluate ("divide")(4)(2) => 2
+//evaluate ("subtract")(4)(2)=>2
+
+function evaluate (operation){
+   return function (a){
+    return function(b){
+         if( operation === "sum")return a+b;
+         else if ( operation === "multiply")return a*b;
+         else if( operation === "divide")return a/b;
+         else{
+            return a-b;
+         }
+    }
+   }
+}
+
+// console.log( evaluate("sum")(4)(2));
+// console.log(evaluate("subtract")(4)(2));
+// console.log(evaluate("divide")(4)(2));
+
+//infinite currying
+//sum(2)(3)(4)......so on
+
+function sum(a){
+    return function(b){
+      if(b)return sum(a+b);  //this returns a function sum(a+b) which closes over a = a+b
+      return a;  //accumulated a+b so far 
+    }
+
+}
+
+// console.log( sum(1)(2)(3)(4)());
+
+
+//Difference between currying and Partial Application
+ function currying(a){
+    return function (b){
+       return  function (c){
+            return (a+b+c);
+        }
+    }
+ }
+
+console.log( currying(1)(2)(3));
+
+function pApp(a){
+    return function(b,c){
+        return(a+b+c);
+    }
+}
+
+console.log( pApp(1)(2,3)); //or var sum = pApp(1); 
+                            //sum(2,3);
+
+
+//Ques- Real world scenario of currying
+
+function updateElementText(id){
+   return function(text){
+     document.querySelector("#"+ id).textContent = text;
+   }
+}
+
+var headingText = updateElementText("heading");
+headingText("Hello Aparna");
+
+//this way we can use currying to reduce the repetition of full dom manupulation 
+//now we simply wrote the function with id as parameter for once and then we can store the function returned from this 
+//into a variable and we can call this textprovider function as many times as we want.
 
 
 
+//Objects - 
+//Ques- what will be the output
 
+var fun = (function(a){
+    delete a;
+    return a;
+})(5);
+
+console.log(fun); //this will print 5 only as 'delete' can be used to delete the property of an object
+//but can't be used to delete a local variable.
+
+//How to add a dynamic property to an object
+
+const property = "firstName";
+const name = "Apoorv";
+
+const user = {
+    name:"Aparna",
+    age:25,
+    [property]:name,
+
+}
+
+// console.log( user[property]);
+// //or
+// console.log(user["firstName"]);
+// //or
+// console.log(user.firstName);
+
+
+//Hpw to loop through an object
+
+for( key in user ){
+    // console.log(key);
+    // console.log(user[key]);
+}
+
+//Ques - give the output
+
+const obj = {
+    a:"first",
+    b:"second",
+    a:"third",
+}
+console.log(obj);
+
+//a:"third"
+//b:second
+//the a will have the last assigned value in the same position.
