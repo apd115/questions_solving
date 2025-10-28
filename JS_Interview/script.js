@@ -343,7 +343,7 @@ console.log(fun); //this will print 5 only as 'delete' can be used to delete the
 //How to add a dynamic property to an object
 
 const property = "firstName";
-const name = "Apoorv";
+const Name = "Apoorv";
 
 const user = {
     name:"Aparna",
@@ -378,3 +378,180 @@ console.log(obj);
 //a:"third"
 //b:second
 //the a will have the last assigned value in the same position.
+
+//Ques - create a function multiplyByTwo(obj) which multiplies all the numeric properties of an object by 2.
+
+const obj1= {
+    a:100,
+    b:200,
+    title:"practise",
+}
+
+multiplyByTwo(obj1);
+
+function multiplyByTwo(obj){
+    for( key in obj){
+        if( typeof obj[key] === "number"){
+            obj[key] = obj[key]*2;
+        }
+    }
+}
+
+// console.log(obj1);
+
+//Ques - what's the output of this
+
+const a ={};
+const b = {key:"b"};
+const d ={key:"d"};
+
+a[b] = 123;
+a[d] = 456;
+
+console.log(a[b]);
+//output - 256 because b can't be assigned as key inside of a unless it is a string so inside of a it'll be assigned as 
+//a["object object"] = 123 - first and then a["object object"] = 456
+//so finally it prints 456
+
+//Ques- Difference between JSON.stringify and JSON.parse-
+
+console.log(obj1);
+var strObj = JSON.stringify(obj1);
+console.log(strObj);
+
+var parObj = JSON.parse(strObj);
+console.log(parObj);
+
+//Real world use case of JSON.stringify()
+
+localStorage.setItem("test", strObj);
+// console.log("apd:",localStorage.getItem("test"));
+
+// Ques - spread operation 
+
+// console.log([..."Aparna"]); 
+//outout - [
+ //   "A",
+ //   "p",
+ //   "a",
+ //   "r",
+ //   "n",
+ //   "a"
+//]
+
+//Ques - output of this - spread operator
+
+const obj2 = {
+    name:"Aparna",
+    color: "white",
+    lastName: "dwivedi",
+};
+
+const obj3 = {
+    user:"Apoorv",
+    ...obj2,
+};
+
+// console.log(obj3);
+
+//Ques - predict the output
+
+// console.log( JSON.stringify(obj2, ["name","lastName"])); //this will stringify only 2 mentioned properties of the obj3
+
+
+//Ques - output
+
+const test = {
+    radius:2,
+    diameter(){
+        return this.radius*2;
+    },
+    perimeter:()=>{
+       return 2*Math.PI*(this.radius);
+    },
+};
+
+console.log(test.diameter());
+console.log(test.perimeter());
+
+//output - 4
+// NaN //this is  because arrow functions can only access global variables via this keyword 
+
+
+//Destructuring - 
+
+const girl = {
+    who:"appi",
+    age:25,
+    virtue : {
+      day: "happy",
+      night: "sad",
+    },
+};
+
+const {who} = girl;
+console.log(who);
+
+//if want to change the property name while destructuring
+const{who:Thegirl} = girl;
+console.log(Thegirl);
+
+//destructuring nested object
+const{virtue:{day}} = girl;
+console.log(day);
+
+
+//object referencing ques-
+
+
+// const girl = {
+//     who:"appi",
+//     age:25,
+//     virtue : {
+//       day: "happy",
+//       night: "sad",
+//     },
+// };
+let D;
+D = girl;
+ girl.who = "aparna";
+
+ console.log(girl.who);
+ console.log(D.who); //the expected output is appi but it's aparna
+ //and thats because when we assigned the girl object to the variable D , only the reference to this object is being
+ //assigned to this variable and not the actual object so whatever is being changed in the girl object the same has been changed
+ //for the variable d as well.
+
+ //Ques - 
+ console.log({a:1} == {a:1});
+ console.log({a:1} === {a:1});
+
+ //output of both will be false as objects are only equal if their reference are equal. They are not not made equal by value.
+
+ //Ques- predict the output
+
+ let person = {name:"aparna"};
+ let member  = [person];
+ person = null;
+ console.log(member);
+ //o/p - [
+//     {
+//         "name": "aparna"
+//     }
+// ]
+//thats because we made the whole person object as null which wont affect the memmber[0]
+//if you want to make the person object as null, you need to make its propertied as null
+//i.e. person.name = null //this will print console.log(member) as null.
+
+//Ques-
+const value = {number:10};
+function Multiply(x = {...value}){
+    return x.number*=2;
+}
+
+console.log(Multiply()); //o/p - 20 because here we used spread operator so the actual object is being assigned to x
+console.log(Multiply(value)); //o/p - 20 here we didn't used spread operator so only reference to the object is being passed
+console.log(Multiply(value)); //o/p- 40 //here we have modified the object.number and the reference it's taking is from the same object
+//so this time x.number is changed to 20 and now 20*2 is returned and the output will be 40
+
+//Ques-
