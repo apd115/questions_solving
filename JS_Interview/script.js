@@ -555,3 +555,166 @@ console.log(Multiply(value)); //o/p- 40 //here we have modified the object.numbe
 //so this time x.number is changed to 20 and now 20*2 is returned and the output will be 40
 
 //Ques-
+const person1 = {
+    name:"apd",
+    age:25,
+}
+function modPer(person){
+    person.name="appoo";
+    person={
+        name:"apd2",
+        age:30,
+    }
+    return person;
+}
+
+// console.log(modPer(person1));
+//output - {
+//     "name": "apd2",
+//     "age": 30
+// }
+
+//Ques - How to make the deep copy of an object
+
+const object = {
+    name: "poonam",
+    age: "45",
+    virtue:{
+        day:"happy",
+        night:"sad",
+    },
+}
+
+// const objClone = Object.assign({}, object);  //first method
+// const objClone =JSON.parse(JSON.stringify(object)); //second method
+const objClone = {...object};
+objClone.virtue.day = "afternoon";
+// console.log(objClone);
+// console.log(object);
+
+
+//this keyword 
+//this doesn't refer to ita parent function instead it refers to the object that calls that function.
+
+function normal(){
+    var name = "apd23";
+    return  ()=>{
+        // console.log(this.name);
+    }
+}
+
+normal()(); //this won't print nothing because "name" is a local variable and hasn't been assigned to
+//windows object
+
+
+//for arrow function
+const thisL = {
+    name:"apd23",
+
+    arrowThis : ()=>{
+        // console.log(this.name);
+    }
+}
+thisL.arrowThis(); //prints nothing because this refers to the window object where this arrow function is defined.
+
+//for normal function
+
+const thisLL = {
+    name:"apd2306",
+    normalThis : function(){
+    //    console.log(this.name);
+    }
+
+}
+
+thisLL.normalThis(); //this prints because its this refers to its caller.
+
+//where arrow function prints - 
+
+const arrowThis2 = {
+    name: "apd2001",
+    nestedThis(){
+        const nestedArrow = () =>{
+            // console.log( this.name ); //this will print the name as its this refers to the plae where it is defined i.e. inside 
+            //of nestedThis so basically it takes its this from nestedArrow and nestedArrow has its this from arrowThis2 object i.e. its caller so this time nestedarrow can print name .
+        }
+        nestedArrow();
+    }
+}
+
+arrowThis2.nestedThis();
+
+//Ques - "this" keyword
+
+const testObj = {
+    name: "aparna",
+    getUser(){
+    //    console.log(this.name);
+    }
+}
+
+setTimeout(testObj.getUser, 1000); //what is logged?
+//it doesn't log anything because as soon as you put getuser method in the setTimeout it's no longer 
+//a method of an object and it's a normal function whose caller is window object so it'll print nothing.
+
+//Ques -  Fix this code
+
+setTimeout(()=>{
+    testObj.getUser();
+},2000);
+
+//create a calculator object such that - calculator.read() - willask user to give 2 numbers
+//calculator.sum() - will add these 2 numbers
+//calculator.multiply -  will multiply these 2 numbers
+
+const calculator = {
+    read(){
+        this.a = +prompt("a : ", a);
+        this.b = +prompt("b : ", b);
+    },
+    sum(){
+         console.log( this.a + this.b );
+        
+    },
+    multiply(){
+        console.log( this.a * this.b );
+    }
+    
+}
+
+// calculator.read();
+// calculator.sum();
+// calculator.multiply();
+
+//Ques - what's the output of this 
+
+var length = 4;
+
+function print(){
+    console.log(this.length);
+}
+
+// const objApd = {
+//     length: 5,
+//     meth(fn){
+//        fn();
+//     }
+// }
+
+// objApd.meth(print); //what'll be the output
+
+//the output will be 4 as this print function as a whole is passed to the meth method of the object
+//so this time objApd should treat it like a method but since we are calling this fn() inside of the method so it will have 
+//its identity attached to it and it will refer to the global scope which is length = 4
+//this is same as setTimeout ques - there we were passing the method of the object as a whole to the setTimeout and setTimeout was treating it a normal function of its own but as soon as we created new callback funtion inside of the setTimeout and then we called this object method inside it it took its identity back, and this is exactly the case here also.
+
+//Variant of the previous ques - 
+
+
+const objApd = {
+    length: 5,
+    meth(){
+       arguments[0](); //this will print 3 , as inside of array protoytpes there's one property as length and which will give 3  as length since arguments array has 3 length
+    }
+}
+objApd.meth(print, 2, 3);
