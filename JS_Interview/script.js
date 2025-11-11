@@ -673,11 +673,11 @@ const calculator = {
         this.b = +prompt("b : ", b);
     },
     sum(){
-         console.log( this.a + this.b );
+        //  console.log( this.a + this.b );
         
     },
     multiply(){
-        console.log( this.a * this.b );
+        // console.log( this.a * this.b );
     }
     
 }
@@ -718,3 +718,97 @@ const objApd = {
     }
 }
 objApd.meth(print, 2, 3);
+
+//call. bind, apply
+
+const obj4 = {
+    name: "apoorva",
+}
+
+function test4(age, profession){
+    return "Hello" + this.name + "your age is" + age + "profesion is" + profession;
+}
+
+//call 
+//if i want to call this function inside of the obj4 - use call, bins, apply - call, bind, apply can be applied to all the functions in js
+
+// console.log(test4.call(obj4, 25, "engineer"));
+// //apply
+// console.log( test4.apply(obj4, [25, "engineer"])); //same as call but need to pass the parguments as an array
+
+//bind
+
+const bindTest4 = test4.bind(obj); //bind is different , call bind only once on a function and we can reuse it over and over again with different arguments. if you will do console.log(bindTest4) // it will log the whole function test4.
+
+// console.log( bindTest4(25, "engineer"));
+// console.log( bindTest4(26, "doctor"));
+
+//Ques - what will be the output
+
+let age = 19;
+
+const obj5 = {
+    age: 20,
+    getAge(){
+        return this.age;
+    }
+}
+
+const obj6 = {
+    age:24,
+
+}
+
+// console.log( obj5.getAge.call( obj6 )); // o/p - 24 beacuse obj5.getAge 's this will refer to the age property of obj5 but now we did obj5.getAge.call(obj6) now this inside of getAge will refer to the age property of obj6 as "this" inside a function can change its reference depending on its caller object.
+
+//same output we are going to get using bind and apply as well
+//console.log( obj5.getAge.apply(obj6));
+//console.log( obj5.getAge.bind(obj6)()); - obj5.getAge.bind(obj6) -returns a funtion itself and we called it instantly 
+//obj5.getAge.bind( obj6 )() - IIFE
+
+//Ques - predict the output
+var status = "global";
+
+setTimeout(()=>{
+    const objSet = {
+        status : "object",
+        getStatus(){
+            return this.status;
+        }
+
+    };
+    // console.log( objSet.getStatus());  //prints object
+    // console.log( objSet.getStatus.call(this));  //prints global
+    }
+, 0);
+
+//Ques - 
+
+//there doesn't exist anything like bind chaining once a function is bound to a particular object , we can't rebound it.
+
+function bindChain(){
+    // console.log( this.name );
+}
+
+var f = bindChain.bind({name:"john"}).bind({name:"ann"});
+f(); // this will print john 
+
+//Promises - 
+
+console.log("before appi");
+
+// function testPro(name){
+//     return new Promise ((resolve)=>{
+//         setTimeout(()=>{
+//             resolve(console.log( `hello ${name}`));
+//         },0)
+//     })
+   
+// }
+
+// const  message = async()=>{
+//     await testPro("appi");
+// }
+// message();
+
+console.log("after appi");
