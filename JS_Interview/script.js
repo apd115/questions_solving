@@ -793,7 +793,7 @@ function bindChain(){
 var f = bindChain.bind({name:"john"}).bind({name:"ann"});
 f(); // this will print john 
 
-//Promises - 
+//Asynchronous operations and callback functions
 
 console.log("before appi");
 
@@ -810,5 +810,138 @@ console.log("before appi");
 //     await testPro("appi");
 // }
 // message();
+// function subscribe(name, cb){
+//     setTimeout(()=>{
+//         cb(`hit the button ${name}`);
+//     },0)
+// }
 
-console.log("after appi");
+// function greet(name, cb){
+//     setTimeout(()=>{
+//         cb(`hello ${name}`);
+//     },0)
+// }
+// var message1 = subscribe("aparna", (message)=>{
+//     console.log(message);
+//     var message2  = greet("aparna", (message)=>{
+//         console.log(message);
+//     });
+    
+
+
+// });
+
+// console.log("after appi");
+
+// //I'll solve the above commented part by using promises instead of callbacks
+// function greet(name){
+//     return new Promise((resolve, reject)=>{
+//        setTimeout(()=>{
+//         resolve(`hello ${name} from promise`);
+//        },0)
+//     })
+// }
+// function subscriber(name){
+//     return new Promise ((resolve, reject)=>{
+//         setTimeout(()=>{
+//             resolve(`subscribe ${name}`);
+//         },0)
+//     });
+// }
+// const pro1 = subscriber("aparna");
+// pro1.then((res)=>{
+//     console.log(res);
+//     const pro2 = greet("aparna");
+//     pro2.then((res)=>{
+//        console.log(res);
+//     })
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// console.log("after subscribe aparna");
+
+//Now this again creates a pyramid like structure , so to overcome that we will use **********promise chaining*********
+
+// function subscribe(name){
+//     return new Promise((resolve, reject)=>{
+//          setTimeout(()=>{
+//             resolve(`subscribe ${name} from promise chaining`)
+//          },0)
+//     })
+// }
+
+// function greet(name){
+//     return new Promise((resolve, reject)=>{
+//        setTimeout(()=>{
+//         resolve(`hello ${name} from pormise chaining`)
+//        },0)
+//     })
+// }
+
+// subscribe("aparna").then((res)=>{
+//     console.log(res);
+//     return greet("aparna");
+// }).then((res)=>{
+//     console.log(res);
+// })
+
+//Now there's one more way to handle all these promises at once instead of writing this long code which is ****promise combinators****
+function subscribe(name){
+    return new Promise((resolve, reject)=>{
+         setTimeout(()=>{
+            reject();
+         },0)
+    })
+}
+
+function greet(name){
+    return new Promise((resolve, reject)=>{
+       setTimeout(()=>{
+        resolve(`hello ${name} from pormise chaining`)
+       },0)
+    })
+}
+
+Promise.all([
+    greet("aparna"),
+    subscribe("aparna"),
+]).then((res)=>{
+    console.log(res)
+}).catch((err)=>{
+    console.log("an unknown error", err);
+})
+
+
+//Promises- 
+
+const pro = new Promise((resolve, reject)=>{
+     var result = true;
+     setTimeout(()=>{
+        if( result )resolve("I'm resolved");
+     else{
+        reject( new Error("I'm rejected"));
+     }
+     },1000)
+    
+});
+
+pro.then((res)=>{
+     console.log(res);
+}
+).catch((err)=>{
+    console.log(err);
+});
+
+
+//we can also diretly use promise as -
+
+const ans1 = Promise.resolve("subscribe");
+console.log(ans1);
+
+ans1.then((res)=>{
+    console.log(res);
+}).catch((err)=>{
+    console.log(err);
+})
+
