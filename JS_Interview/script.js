@@ -961,3 +961,31 @@ console.log("outside of the promise");
 //output - synchronous in promise
 //  outside of the promise
 //  asynchronous in promise
+
+//Ques-  
+
+const pro4 = new Promise((resolve, reject)=>{
+    console.log(1);
+    console.log(2);
+}).then((res)=>console.log("The result is", res));
+
+console.log(3);
+//here then block will never be executed then((res)=>console.log("The result is", res));
+//and output will be 1 2 3 
+
+//Ques - predict the output - 
+console.log("start");
+const fn = ()=>{
+    return new Promise((resolve, reject)=>{
+        console.log(5);
+        resolve("success");
+    })
+}
+
+console.log(6);
+
+fn().then((res)=>console.log(res));  //here this fn is invoked so synchronous code inside of this fn is printed here
+console.log(7);
+
+//output -
+//start 6 5 7 success
