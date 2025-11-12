@@ -907,9 +907,9 @@ Promise.all([
     greet("aparna"),
     subscribe("aparna"),
 ]).then((res)=>{
-    console.log(res)
+    // console.log(res)
 }).catch((err)=>{
-    console.log("an unknown error", err);
+    // console.log("an unknown error", err);
 })
 
 
@@ -927,10 +927,10 @@ const pro = new Promise((resolve, reject)=>{
 });
 
 pro.then((res)=>{
-     console.log(res);
+    //  console.log(res);
 }
 ).catch((err)=>{
-    console.log(err);
+    // console.log(err);
 });
 
 
@@ -940,8 +940,24 @@ const ans1 = Promise.resolve("subscribe");
 console.log(ans1);
 
 ans1.then((res)=>{
-    console.log(res);
+    // console.log(res);
 }).catch((err)=>{
-    console.log(err);
+    // console.log(err);
 })
 
+//Ques -  Promise- what's the output - 
+
+
+const pro3 = new Promise((resolve, reject)=>{
+     console.log("synchronous in promise");
+     resolve("asynchronous in promise");
+}).then((res)=>{
+    console.log( res);
+}).catch((err)=>{
+    console.log(err);
+});
+
+console.log("outside of the promise");
+//output - synchronous in promise
+//  outside of the promise
+//  asynchronous in promise
