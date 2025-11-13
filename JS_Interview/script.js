@@ -989,3 +989,9 @@ console.log(7);
 
 //output -
 //start 6 5 7 success
+
+//ques - 
+
+
+
+
