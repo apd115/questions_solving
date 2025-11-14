@@ -990,7 +990,35 @@ console.log(7);
 //output -
 //start 6 5 7 success
 
-//ques - 
+function expensiveFun(num1, num2){
+    let answer ;
+    for( let i=0; i<1000000; i++){
+         answer = num1 * num2;
+    }
+    return answer;
+}  //this is an expensive function this calculation is expensive so i need to do something in order to stop
+//it calculating some already calculated calculations
+
+console.time();
+console.log(expensiveFun(3678, 9876));
+console.timeEnd();
+
+function myMemoization (fn){
+    let ans = {};
+   return function(...args){
+      let keys = JSON.stringify(...args);
+      if( ans[keys] )return ans[keys];
+      ans[keys] = fn(...args);
+      return ans[keys];
+   }
+}
+ const res = myMemoization(expensiveFun);
+ 
+ console.time();
+ console.log(res(3678, 9876));
+ console.timeEnd();
+
+
 
 
 
