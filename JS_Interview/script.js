@@ -990,6 +990,8 @@ console.log(7);
 //output -
 //start 6 5 7 success
 
+//memoization/caching in JS -
+
 function expensiveFun(num1, num2){
     let answer ;
     for( let i=0; i<1000000; i++){
@@ -1017,6 +1019,9 @@ function myMemoization (fn){
  console.time();
  console.log(res(3678, 9876));
  console.timeEnd();
+
+
+ 
 
 
 

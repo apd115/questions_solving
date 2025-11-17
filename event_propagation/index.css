@@ -1,0 +1,57 @@
+.div{
+    border:2px solid black;
+    margin:10px;
+    padding: 10px;
+}
+.form{
+    border:2px solid black;
+margin:10px;
+padding: 10px;
+}
+.button{
+    border: 2px solid black;
+    margin:10px;
+    padding: 10px;
+}
+.parent{
+    display:flex;
+    flex-direction: row;
+    gap : 20px;
+}
+
+.p1{
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  flex-wrap: wrap;   /* so boxes move to next line on small screens */
+  gap: 20px;         /* space between boxes */
+  padding: 20px;
+  background-color: yellow;
+}
+.p2{
+display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  flex-wrap: wrap;   /* so boxes move to next line on small screens */
+  gap: 20px;         /* space between boxes */
+  padding: 20px;
+  background-color: yellow;
+}
+.p3{
+display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  flex-wrap: wrap;   /* so boxes move to next line on small screens */
+  gap: 20px;         /* space between boxes */
+  padding: 20px;
+  background-color: yellow;
+}
+.p4{
+display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  flex-wrap: wrap;   /* so boxes move to next line on small screens */
+  gap: 20px;         /* space between boxes */
+  padding: 20px;
+  background-color: yellow;
+}
