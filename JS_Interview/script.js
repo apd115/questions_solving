@@ -1023,8 +1023,14 @@ function myMemoization (fn){
 
  
 
+function test(){
+    let count = 0;
+    return `${count} + 1`;
+}
 
-
+test();
+test();
+test();
 
 
 
