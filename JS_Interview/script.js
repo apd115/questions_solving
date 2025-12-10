@@ -1023,14 +1023,40 @@ function myMemoization (fn){
 
  
 
-function test(){
-    let count = 0;
-    return `${count} + 1`;
-}
+// function test(){
+//     let count = 0;
+//     return `${count} + 1`;
+// }
 
-test();
-test();
-test();
+// test();
+// test();
+// test();
+
+// function user() {
+//   this.name = "Aparna";
+// }
+
+// const u = new user();
+
+var name = "Aparna";
+function Aparna1(){
+    
+         this.name = "Apoorv";
+         console.log(this.name);
+    
+       
+    
+}
+Aparna1();
+
+
+console.log("calling with new" );
+new Aparna1(); //here after using "new" Js created new object and this refers to this new object but it still prints "Apoorv" because 
+//again inside of Aparna1 function we are assigning this.name = "Apoorv" and the only diff is before this was refering to the windows object so basically
+//you were setting the name inside thw window object as "Apoorv" but now js has created new object and now you're setting the name inside of this new object
+//using this.name = "Apoorv" so the output remains same the owner has changed.
+
+
 
 
 
