@@ -346,17 +346,17 @@ const property = "firstName";
 const Name = "Apoorv";
 
 const user = {
-    name:"Aparna",
+    sis:"Aparna",
     age:25,
-    [property]:name,
+    [property]:sis,
 
 }
 
-// console.log( user[property]);
-// //or
-// console.log(user["firstName"]);
-// //or
-// console.log(user.firstName);
+console.log( "apd checking dynamic", user[property]);
+//or
+console.log(user["firstName"]);
+//or
+console.log(user.firstName);
 
 
 //Hpw to loop through an object
@@ -1057,6 +1057,22 @@ new Aparna1(); //here after using "new" Js created new object and this refers to
 //using this.name = "Apoorv" so the output remains same the owner has changed.
 
 
+//spread operator - 
 
+// var array = [1,2,3];
 
+// console.log( "logging array only", array);
 
+// console.log("logging for spread", ...array)
+
+function normal(){
+    console.log("arguments", arguments);
+}
+
+normal(1,2,3);
+
+const arrow = () =>{
+    console.log(arguments)
+}
+
+arrow(1,2,3);
